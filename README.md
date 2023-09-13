@@ -25,11 +25,8 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 ## Credits
 
-List your collaborators, if any, with links to their GitHub profiles.
+I got some of my quiz questions from this website: https://basescripts.com/110-javascript-quiz-questions-with-solutions-pdf-download-test-your-knowledge
 
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
-
-If you followed tutorials, include links to those here as well.
 
 ## License
 
