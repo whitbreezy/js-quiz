@@ -117,9 +117,9 @@ var timerEl = document.querySelector("#timer");
 var timer;
 var timeRemaining;
 var score = 0;
-var currQuestion;
+var currentQuestion = 0;
 var index = 0;
-var scores = [];
+var highScores = [];
 
 
 //function that starts timer
@@ -140,35 +140,44 @@ function startTimer() {
     }, 1000);
 };
 
-//shows question based on index being grabbed from array
-//how to loop through array indexes when button was clicked 
 function showQuestions(){
-        currQuestion = questions[index].question;
-        questionText.textContent = currQuestion;
-        option1.textContent = questions[index].answers[0];
-        option2.textContent = questions[index].answers[1];
-        option3.textContent = questions[index].answers[2];
-        option4.textContent = questions[index].answers[3];
+    //set question text element's contents to question in the array
+    questionText.textContent = questions[currentQuestion].question;
 
-        //listen for clicks on answer options
-        quizContainer.addEventListener("click", function(e){
-            var clickedAns = e.target;
-     
-        //if statement checks if answer clicked was correct,
-        if (clickedAns.textContent === questions[index].correctAnswer) {
-            console.log("success");
-            index ++;
-            score++;
-            console.log(index);
-            console.log(score);
-            showQuestions();
+    for (var i=0; i<questions[currentQuestion].answers.length; i++){
+        option1.textContent = questions[currentQuestion].answers[0];
+        option2.textContent = questions[currentQuestion].answers[1];
+        option3.textContent = questions[currentQuestion].answers[2];
+        option4.textContent = questions[currentQuestion].answers[3];
+    };
+};
+
+function nextQuestion(){
+    //go to the next question to the end of the questions array. at the end of the array, end game
+    if (currentQuestion<questions.length-1){
+        currentQuestion++;
+        showQuestions();
+    }else{
+        endGame();
+    };
+};
+
+quizContainer.addEventListener("click", function(e){
+    var clickedAns = e.target;
+    
+    //if statement checks if answer clicked was correct,
+    if (clickedAns.textContent === questions[currentQuestion].correctAnswer) {
+        score++;
+        console.log(score);
+        console.log("correct!")
+        nextQuestion();
         }else{
             console.log("incorrect!");
-            index ++;
-            showQuestions();
+        nextQuestion();
         }
-        });
     }
+);
+
 
 
 //set up and run startGame on click
@@ -201,7 +210,7 @@ function endGame(){
     saveScore.textContent = "Save my Score";
     saveScore.addEventListener("click", storeScore())
     //reset question index and score to 0
-    index = 0;
+    currentQuestion = 0;
     score = 0;
 
 }

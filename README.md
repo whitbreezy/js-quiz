@@ -27,6 +27,11 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 I got some of my quiz questions from this website: https://basescripts.com/110-javascript-quiz-questions-with-solutions-pdf-download-test-your-knowledge
 
+I got some help with my looping and getting the next question to appear from here:
+https://www.geeksforgeeks.org/how-to-create-a-simple-javascript-quiz/
+
+
+
 
 ## License
 
