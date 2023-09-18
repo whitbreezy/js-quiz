@@ -11,7 +11,7 @@
     <header>
         <nav>
             <div id="high-scores">High Scores</div>
-            <div>Time Remaining: <span id="time-remaining">0</span> seconds</div>
+            <div>Time Remaining: <span id="timer">0</span> seconds</div>
         </nav>
     </header>
     <main>
@@ -21,9 +21,10 @@
         
         <div>
             <p class="question-text">Test your JavaScript knowledge in a short timed test. Click the button below to begin!</p>
+            <p id="incorrect"></p>
         </div>
         <div class="button-div">
-            <button> Start Game</button>
+            <button class="start-button"> Start Game</button>
         </div>
        
         <div class="quiz-container">

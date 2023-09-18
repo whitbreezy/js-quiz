@@ -103,11 +103,115 @@ var questions = [
     }
 ]
 
-//set up objects for selectors in html
+//set up js objects for selectors in html
 var questionText = document.querySelector(".question-text");
-var startButton = document.querySelector(".button-div");
+var startButton = document.querySelector(".start-button");
+var buttonDiv = document.querySelector(".button-div")
 var quizContainer = document.querySelector(".quiz-container");
+var incorrect = document.querySelector("#incorrect");
 var option1 = document.querySelector("#option1");
 var option2 = document.querySelector("#option2");
 var option3 = document.querySelector("#option3");
 var option4 = document.querySelector("#option4");
+var timerEl = document.querySelector("#timer");
+var timer;
+var timeRemaining;
+var score;
+var currQuestion;
+
+
+
+
+
+
+
+
+//function that starts timer
+function startTimer() {
+    timeRemaining = 10;
+    // Sets timer
+    timer = setInterval(function() {
+        //while time still remains, reduce time remaining at a rate of 1s
+    if (timeRemaining > 0) {
+        timerEl.textContent = timeRemaining;
+        timeRemaining--;
+        }
+    else if (timeRemaining === 0) {
+        timerEl.textContent = '0',
+        clearInterval(timer);
+        endGame();
+    }
+    }, 1000);
+};
+
+//shows question 
+function showQuestions(){}
+
+
+//render question 1
+    function renderQuestion1(){
+        questionText.textContent = questions[0].question;
+        option1.textContent = questions[0].answers[0];
+        option2.textContent = questions[0].answers[1];
+        option3.textContent = questions[0].answers[2];
+        option4.textContent = questions[0].answers[3];
+        };
+
+    function renderQuestion2(){
+        questionText.textContent = questions[0].question;
+        option1.textContent = questions[0].answers[0];
+        option2.textContent = questions[0].answers[1];
+        option3.textContent = questions[0].answers[2];
+        option4.textContent = questions[0].answers[3];
+        };
+
+    
+
+
+
+    //listen for click on correct answer
+    quizContainer.addEventListener("click", function(e){
+        var clickedAns = e.target;
+        if (clickedAns.textContent == questions[0].correctAnswer.textContent){
+            renderQuestion2()
+        }
+    })
+    renderQuestion1();
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//set up and run startGame on click
+startButton.addEventListener("click", function startGame(){
+    quizContainer.setAttribute("style", "visibility: visible;");
+    startButton.setAttribute("style", "visibility: hidden;");
+    //timer is started when start button is clicked
+    startTimer();
+    showQuestions();
+    //for loop to display questions
+  
+});
+
+function endGame(){
+    questionText.textContent = "Game Over.  Your score was " + score;
+    //hide quiz container w answer options
+    quizContainer.setAttribute("style", "visibility: hidden;");
+    //show start button again
+    startButton.setAttribute("style", "visibility: visible;");
+    //set start button text to "play again"
+    startButton.textContent = "Play Again"
+
+}
