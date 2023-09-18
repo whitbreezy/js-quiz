@@ -67,4 +67,7 @@ li{
     text-align: left;
     cursor: pointer;
 }
+#high-scores{
+    visibility: hidden;
+}
 /* need to toggle visibility on button and quiz container when they click start*/
