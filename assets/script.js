@@ -106,7 +106,7 @@ var questions = [
 //set up js objects for selectors in html and variables
 var questionText = document.querySelector(".question-text");
 var startButton = document.querySelector(".start-button");
-var buttonDiv = document.querySelector(".button-div")
+var actionsDiv = document.querySelector(".actions-div")
 var quizContainer = document.querySelector(".quiz-container");
 var incorrect = document.querySelector("#incorrect");
 var option1 = document.querySelector("#option1");
@@ -114,6 +114,7 @@ var option2 = document.querySelector("#option2");
 var option3 = document.querySelector("#option3");
 var option4 = document.querySelector("#option4");
 var timerEl = document.querySelector("#timer");
+var h1 = document.querySelector("h1");
 var timer;
 var timeRemaining;
 var score = 0;
@@ -190,15 +191,41 @@ startButton.addEventListener("click", function startGame(){
 });
 
 //function to store score (incomplete)
-function storeScore(){
-    localStorage.setItem("Score", score)
+function renderForm(){
+    var initialsLabel = document.createElement("label");
+    var initialsInput = document.createElement("input");
+    var submitBtn = document.createElement("button")
+    initialsInput.name = "initials";
+    initialsInput.type = "text";
+    initialsLabel.textContent = "Enter your initials to save your score";
+    submitBtn.textContent = "Submit";
+    initialsLabel.setAttribute("class","initials-label");
+    submitBtn.setAttribute("class", "submit-btn");
+    actionsDiv.appendChild(initialsLabel);
+    actionsDiv.appendChild(initialsInput);
+    actionsDiv.appendChild(submitBtn);
+    //listen for clicks on submit button
+    submitBtn.addEventListener("click", function(){
+        localStorage.setItem("score", score);
+        //not working^^^
+        var initials = initialsInput.value;
+        localStorage.setItem("Player Initials", initials);
+        initialsLabel.remove();
+        initialsInput.remove();
+        submitBtn.remove();
+        renderHighScores();
+        }
+    );
+};
+
+
+function renderHighScores(){
     
 
 }
 
-function renderHighScores(){}
-
 function endGame(){
+    renderForm();
     questionText.textContent = "Game Over.  Your score was " + score;
     //hide quiz container w answer options
     quizContainer.setAttribute("style", "visibility: hidden;");
@@ -206,11 +233,6 @@ function endGame(){
     startButton.setAttribute("style", "visibility: visible;");
     //set start button text to "play again"
     startButton.textContent = "Play Again"
-    var saveScore = document.createElement("button");
-    saveScore.textContent = "Save my Score";
-    saveScore.addEventListener("click", storeScore())
-    //reset question index and score to 0
     currentQuestion = 0;
     score = 0;
-
 }
