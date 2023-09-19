@@ -114,7 +114,7 @@ var option2 = document.querySelector("#option2");
 var option3 = document.querySelector("#option3");
 var option4 = document.querySelector("#option4");
 var timerEl = document.querySelector("#timer");
-var h1 = document.querySelector("h1");
+var highScoreBtn = document.querySelector("#high-scores-btn")
 var timer;
 var timeRemaining;
 var score = 0;
@@ -144,7 +144,7 @@ function startTimer() {
 function showQuestions(){
     //set question text element's contents to question in the array
     questionText.textContent = questions[currentQuestion].question;
-
+//loop through answers in array and apply to option elements
     for (var i=0; i<questions[currentQuestion].answers.length; i++){
         option1.textContent = questions[currentQuestion].answers[0];
         option2.textContent = questions[currentQuestion].answers[1];
@@ -159,6 +159,7 @@ function nextQuestion(){
         currentQuestion++;
         showQuestions();
     }else{
+        renderForm();
         endGame();
     };
 };
@@ -185,6 +186,8 @@ quizContainer.addEventListener("click", function(e){
 startButton.addEventListener("click", function startGame(){
     quizContainer.setAttribute("style", "visibility: visible;");
     startButton.setAttribute("style", "visibility: hidden;");
+    currentQuestion = 0;
+    score = 0;
     //timer is started when start button is clicked
     startTimer();
     showQuestions();
@@ -204,27 +207,43 @@ function renderForm(){
     actionsDiv.appendChild(initialsLabel);
     actionsDiv.appendChild(initialsInput);
     actionsDiv.appendChild(submitBtn);
+    
     //listen for clicks on submit button
     submitBtn.addEventListener("click", function(){
-        localStorage.setItem("score", JSON.stringify(score));
-        //not working^^^
-        var initials = initialsInput.value;
-        localStorage.setItem("initials", initials);
+        
+        var userScore = {
+            initials: initialsInput.value,
+            highScore: score,
+        }
+        localStorage.setItem("user-score", JSON.stringify(userScore));
+        highScores.push(userScore);
+        localStorage.setItem("high-scores", JSON.stringify(highScores));
+        console.log(highScores);
         initialsLabel.remove();
         initialsInput.remove();
         submitBtn.remove();
-        renderHighScores();
         }
     );
 };
+//render high score list when high score button is clicked
 
+highScoreBtn.addEventListener("click",
+function(){
+var scoresList = document.createElement("ol");
+var scoreHeader = document.createElement("h2");
+scoreHeader.textContent = "High Score List"
+actionsDiv.appendChild(scoreHeader)
+actionsDiv.appendChild(scoresList);
+for (var i=0; i < highScores.length; i++){
+    var scoreLi = document.createElement("li");
+    scoreLi.textContent = highScores[i].initials + " - "+ highScores[i].highScore;
+    scoresList.appendChild(scoreLi);
+};
+});
 
-function renderHighScores(){
-
-}
 
 function endGame(){
-    renderForm();
+
     questionText.textContent = "Game Over.  Your score was " + score;
     //hide quiz container w answer options
     quizContainer.setAttribute("style", "visibility: hidden;");
@@ -232,6 +251,5 @@ function endGame(){
     startButton.setAttribute("style", "visibility: visible;");
     //set start button text to "play again"
     startButton.textContent = "Play Again"
-    currentQuestion = 0;
-    score = 0;
+
 }

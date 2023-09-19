@@ -84,7 +84,6 @@ input{
     border-radius: 5px;
     box-shadow: none;
 }
-#high-scores{
-    visibility: hidden;
+#high-scores-btn{
+    cursor: pointer;
 }
-/* need to toggle visibility on button and quiz container when they click start*/
