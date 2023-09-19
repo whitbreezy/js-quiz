@@ -125,7 +125,7 @@ var highScores = [];
 
 //function that starts timer
 function startTimer() {
-    timeRemaining = 10;
+    timeRemaining = 60;
     // Sets timer
     timer = setInterval(function() {
         //while time still remains, reduce time remaining at a rate of 1s
@@ -206,10 +206,10 @@ function renderForm(){
     actionsDiv.appendChild(submitBtn);
     //listen for clicks on submit button
     submitBtn.addEventListener("click", function(){
-        localStorage.setItem("score", score);
+        localStorage.setItem("score", JSON.stringify(score));
         //not working^^^
         var initials = initialsInput.value;
-        localStorage.setItem("Player Initials", initials);
+        localStorage.setItem("initials", initials);
         initialsLabel.remove();
         initialsInput.remove();
         submitBtn.remove();
@@ -220,7 +220,6 @@ function renderForm(){
 
 
 function renderHighScores(){
-    
 
 }
 

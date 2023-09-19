@@ -2,26 +2,21 @@
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
+This project is a JavaScript quiz that can be used to test one's knowledge of basic JavaScript concepts. The user's score is stored in the browser and can be saved under their initials.
 
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
+Link to live application: https://whitbreezy.github.io/js-quiz/
 
 ## Installation
 
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+Visit my github repo and clone to your machine:
+https://github.com/whitbreezy/js-quiz
+
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+See below for screenshot of working application:
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
-
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+![screenshot of application](./assets/app-screenshot.png)
 
 ## Credits
 
@@ -30,14 +25,10 @@ I got some of my quiz questions from this website: https://basescripts.com/110-j
 I got some help with my looping and getting the next question to appear from here:
 https://www.geeksforgeeks.org/how-to-create-a-simple-javascript-quiz/
 
-
+I also got some help from the class code/notes from my coding bootcamp.
 
 
 ## License
 
-The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/).
-
----
-
-🏆 The previous sections are the bare minimum, and your project will ultimately determine the content of this document. You might also want to consider adding the following sections.
+See github repo for license info.
 
